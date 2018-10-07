@@ -1,0 +1,143 @@
+
+        Ease of building the project and running tests
+        Project organization and ease of understanding
+        Naming conventions and clarity
+        Clean code (as defined by the book of the same name) at the module/class 
+							and function/method level
+        Minimal duplication (DRY)
+        Idiomatic use of the programming language and associated tools
+        Originality of solution (it must not be plagiarized)
+
+
+
+
+1. make build / read me
+
+Two options:
+
+
+
+
+input: 
+
+text file
+first line is always the string of terms. 
+every line is a list of single characters, A-Z <-- case sensitivity 
+
+
+output: the words and location of each letter
+
+
+
+Rules:
+Grid is always square, so rows has to equal columns
+
+Words may be located horizontally, vertically, diagonally, and both forwards and backwards.
+
+Words will never "wrap" around the edges of the grid.
+
+
+User stories 
+
+As the Puzzle Solver
+I want to search horizontally
+So that I can find words on the X axis
+
+As the Puzzle Solver
+I want to search vertically
+So that I can find words on the Y axis
+
+As the Puzzle Solver
+I want to search diagonally descending
+So that I can find words the descend along the X axis
+
+As the Puzzle Solver
+I want to search diagonally ascending
+So that I can find words that ascend along the X axis
+
+As the Puzzle Solver
+I want to search backwards
+So that I can find words in reverse along all axes
+
+
+Initial thoughts:
+
+Functions to search
+delimiter is a comma
+hash for letter locations
+
+
+notes on tdd from sources:
+	a file per test/class per test
+	descriptive name for test functions
+
+
+Quick google for ruby and testing:
+	This means don't write any non-testing code unless you have a failing test.
+ 	Write a test before you write the code
+    	Make sure the test fails! It's important to know you're testing logic is correct
+    	Before writing the next test make sure all tests succeed
+    	You can always clean up your code, if the tests keep working you didn't change the design
+
+
+
+
+
+assert (output, input)
+
+	write test
+	then class for test
+	then run test so that it will fail, and then write code for it pass
+	commit for every test
+
+
+
+
+Organization of their code:
+.idea
+out
+src
+test
+git
+iml
+
+
+
+
+Not quite the solution: but thinking how I could build the puzzle
+
+
+make row: random characters for x width, separate by comma
+
+make column: random characters for y length
+
+amount - squared
+
+so enter a number - so 7 would be 7 down, 7 across
+		 createRow() z many times
+
+		&&
+		create hash size of 7^2 and the hash has values (x location, y location)
+add a word - 
+
+word object
+puzzle object
+
+
+reject puzzle if its not a square
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
