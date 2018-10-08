@@ -129,7 +129,6 @@ reject puzzle if its not a square
 classes?
 
 
-
 puzzle - 
 	has the rules for the grid;
 	can also create the actual puzzle
