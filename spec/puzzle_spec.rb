@@ -34,7 +34,7 @@ describe Puzzle do
 # there should be a function to take input, which is a txt
   describe ".receive_input" do
     context "given a text file" do
-      it "returns two variables one for the csv-to-hash and one for the first line" do
+      it "opens file and initiates word list and location hash" do
         word_list = Puzzle.receive_input(:input_txt)
         location_hash = Puzzle.receive_input(:input_txt)
       end
