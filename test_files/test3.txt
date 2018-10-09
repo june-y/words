@@ -1,0 +1,16 @@
+calculation,cement,northern,daydream,eliminate,pinch,state,calendar,alphabetical,diplomat
+N	C	P	Z	B	J	G	X	Y	E	D	Z	U	E	N
+C	O	F	I	D	C	C	H	Y	T	I	D	X	N	K
+H	A	I	B	R	E	J	H	R	A	P	M	M	S	F
+L	E	L	T	M	Z	N	H	Z	N	L	J	Q	J	T
+N	A	T	E	A	X	E	Y	T	I	O	A	J	G	O
+S	B	N	A	N	L	X	N	D	M	M	B	I	A	M
+V	T	C	X	T	D	U	L	E	I	A	M	Z	Z	L
+D	S	B	X	F	S	A	C	N	L	T	D	S	E	S
+D	U	D	R	V	D	A	R	L	E	I	H	X	S	V
+N	D	A	Y	D	R	E	A	M	A	H	C	N	I	P
+I	H	Q	Q	L	H	Y	C	H	L	C	Y	B	N	U
+L	A	C	I	T	E	B	A	H	P	L	A	E	Z	M
+F	J	D	R	T	E	I	G	X	L	Q	E	Z	C	G
+V	Q	O	N	A	Q	G	Y	K	X	J	X	Q	S	M
+J	N	E	T	X	R	Y	U	Z	Y	M	A	R	X	Y

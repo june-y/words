@@ -32,6 +32,24 @@ TESTING:
 
 describe Puzzle do
 # there should be a function to take input, which is a txt
+  describe ".receive_input" do
+    context "given a text file" do
+      it "returns two variables one for the csv-to-hash and one for the first line" do
+        word_list = Puzzle.receive_input(:input_txt)
+        location_hash = Puzzle.receive_input(:input_txt)
+      end
+    end
+  end
 
 
 end
+
+
+## halt point; one ready to pivot and make smaller tests
+## would treating the file like a csv be better than io readlines
+##
+
+
+## if I read line by line (because mapping the letters to cooridinates)
+## I will need read char, ignore delimiter of space or comma, and record x/y
+## and push values to hash

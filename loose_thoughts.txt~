@@ -10,12 +10,25 @@
 
 
 
+If you need TDD resources, I wanted to make sure to give you some links/books to help you along in this process. 
+
+1. http://codemanship.co.uk/pa rlezuml/blog/?postid=1533 
+
+2. Kent Beck. Test Driven Development: By Example. Addison-Wesley, Reading, MA, 2002
+
+3. Kent Beck. Extreme Programming Explained: Embrace Change. Addison- Wesley
+
+Longman, Reading, MA, 2000
+
+4. James Grenning. Test-Driven Development for Embedded C, The Pragmatic
+
+Programmers
+
+5. http://geepawhill.org/five- underplayed- Premises-of- tdd-2/ 
+
+
 
 1. make build / read me
-
-Two options:
-
-
 
 
 input: 
@@ -127,6 +140,7 @@ puzzle object
 reject puzzle if its not a square
 
 classes?
+
 
 
 puzzle - 
