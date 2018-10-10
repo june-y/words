@@ -1,3 +1,5 @@
+require "spec_helper"
+
 require "puzzle"
 
 =begin
@@ -5,7 +7,6 @@ require "puzzle"
 RULES:
 reject puzzle if its not a square -
         pick a min size; min for words and puzzle size
-
         word class?
             can be read horizontally, vertically, diagonally, and both forwards and backwards
             Words will be a minimum of two letters long
@@ -32,13 +33,28 @@ TESTING:
 
 
 describe Puzzle do
-# there should be a function to take input, which is a txt
+
+ describe ".receive_single_input" do #reading a txt file with a single line
     context "given a text file" do
       it "opens file and reads it" do
-        expect(File.open("test_files/fixtures/hello.txt").read).to eq("hello\n")
+        puzzle = Puzzle.new
+        expect(puzzle.receive_single_input("test_files/fixtures/hello.txt")).to eql(["hello\n"])
       end
     end
+  end
 
+  describe ".receive_input" do #reading a txt file with the expected puzzle format
+     context "given a text file" do
+       it "opens file and initiates square_with letters and word_list" do
+        
+         puzzle = Puzzle.new
+         puzzle.receive_input("test_files/test2.txt")
+         expect(Puzzle.class_variable_get(@@word_list)).to eql(["juvenile,nectar,gold"])
+         #expect(Puzzle.class_variable_get(@@square_with_letters)).to eql("")
+
+       end
+     end
+   end
 
 
 
