@@ -3,23 +3,28 @@ require 'csv'
 
 
 
-def receive_single_input(input_file)
-  file_array = IO.readlines(input_file)
-end
+    def receive_single_input(input_file)
+      file_array = IO.readlines(input_file)
+    end
 
 
-def receive_input(input_file)
-  file_array = IO.readlines(input_file)
-  @@word_list = file_array[0]
-  puts @@word_list
-end
+    def receive_input(input_file)
+      file_array = IO.readlines(input_file)
+      @@word_list = file_array[0].downcase.strip.split(/,/)
+      @@letter_list = @@word_list.join("").chars.uniq
+      return @@word_list
+    end
+
+    def letters_in_wordlist()
+      @@letter_list = @@word_list.join("").chars.uniq
+    end
 
 
-end
+end #puzzle class
 
 test2 = Puzzle.new
 test2.receive_input(ARGV[0])
-
+puts test2.letters_in_wordlist
 =begin
 These are notes
 

@@ -43,6 +43,20 @@ describe Puzzle do
   end
 
 
+  describe ".letters_in_wordlist" do #is this letter in the words in the word list (goes thru all)
+   context "given a list of words" do
+     it "will be one array with unique letters looking for" do
+       puzzle = Puzzle.new
+       expect(puzzle.letters_in_wordlist(["juvenile","nectar","gold"])).to eq("juvenilctargod")
+       #right now this is failing because input for this function is based off
+       #of the ARGV[0] from receive_input.
+     end
+   end
+ end
+
+
+
+
 
 end # Puzzle class
 
