@@ -30,27 +30,20 @@ TESTING:
 
 =end
 
-let(:puzzle) { Puzzle.new }
-before { File.write('input.txt', "Anja\nMaren\n") }
 
 describe Puzzle do
 # there should be a function to take input, which is a txt
-  describe ".receive_input" do
     context "given a text file" do
-      it "opens file and returns square_with_letters and word_list" do
-         File.stub(:open).and_return (square_with_letters, word_list)
+      it "opens file and reads it" do
+        expect(File.open("test_files/fixtures/hello.txt").read).to eq("hello\n")
       end
     end
-  end
+
+
+
+
+
 end # Puzzle class
-
-
-
-
-## halt point; one ready to pivot and make smaller tests
-## would treating the file like a csv be better than io readlines
-##
-
 
 ## if I read line by line (because mapping the letters to cooridinates)
 ## I will need read char, ignore delimiter of space or comma, and record x/y
