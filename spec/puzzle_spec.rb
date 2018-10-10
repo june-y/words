@@ -30,19 +30,21 @@ TESTING:
 
 =end
 
+let(:puzzle) { Puzzle.new }
+before { File.write('input.txt', "Anja\nMaren\n") }
+
 describe Puzzle do
 # there should be a function to take input, which is a txt
   describe ".receive_input" do
     context "given a text file" do
-      it "opens file and initiates word list and location hash" do
-        word_list = Puzzle.receive_input(:input_txt)
-        location_hash = Puzzle.receive_input(:input_txt)
+      it "opens file and returns square_with_letters and word_list" do
+         File.stub(:open).and_return (square_with_letters, word_list)
       end
     end
   end
+end # Puzzle class
 
 
-end
 
 
 ## halt point; one ready to pivot and make smaller tests
