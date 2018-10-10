@@ -1,5 +1,4 @@
 require "spec_helper"
-
 require "puzzle"
 
 =begin
@@ -36,31 +35,45 @@ describe Puzzle do
 
  describe ".receive_single_input" do #reading a txt file with a single line
     context "given a text file" do
-      it "opens file and reads it" do
+      it "opens file and reads it" do  #fix this to test the NON single one
         puzzle = Puzzle.new
         expect(puzzle.receive_single_input("test_files/fixtures/hello.txt")).to eql(["hello\n"])
       end
     end
   end
 
-  describe ".receive_input" do #reading a txt file with the expected puzzle format
-     context "given a text file" do
-       it "opens file and initiates square_with letters and word_list" do
-        
-         puzzle = Puzzle.new
-         puzzle.receive_input("test_files/test2.txt")
-         expect(Puzzle.class_variable_get(@@word_list)).to eql(["juvenile,nectar,gold"])
-         #expect(Puzzle.class_variable_get(@@square_with_letters)).to eql("")
-
-       end
-     end
-   end
-
-
 
 
 end # Puzzle class
 
+
+
+
+=begin
+
+
+hash be like:
+
+
+
+x-axis | y-axis | letter | isin_Word
+
+
+
+
+
 ## if I read line by line (because mapping the letters to cooridinates)
 ## I will need read char, ignore delimiter of space or comma, and record x/y
 ## and push values to hash
+
+
+
+ puzzle = Puzzle.new
+ puzzle.receive_input("test_files/test2.txt")
+ expect(Puzzle.class_variable_get(@@word_list)).to eql(["juvenile,nectar,gold"])
+ #expect(Puzzle.class_variable_get(@@square_with_letters)).to eql("")
+
+
+
+
+=end
