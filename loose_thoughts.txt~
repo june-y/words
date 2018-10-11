@@ -2,7 +2,7 @@
         Ease of building the project and running tests
         Project organization and ease of understanding
         Naming conventions and clarity
-        Clean code (as defined by the book of the same name) at the module/class 
+        Clean code (as defined by the book of the same name) at the module/class
 							and function/method level
         Minimal duplication (DRY)
         Idiomatic use of the programming language and associated tools
@@ -10,32 +10,32 @@
 
 
 
-If you need TDD resources, I wanted to make sure to give you some links/books to help you along in this process. 
+	If you need TDD resources, I wanted to make sure to give you some links/books to help you along in this process.
 
-1. http://codemanship.co.uk/pa rlezuml/blog/?postid=1533 
+	1. http://codemanship.co.uk/pa rlezuml/blog/?postid=1533
 
-2. Kent Beck. Test Driven Development: By Example. Addison-Wesley, Reading, MA, 2002
+	2. Kent Beck. Test Driven Development: By Example. Addison-Wesley, Reading, MA, 2002
 
-3. Kent Beck. Extreme Programming Explained: Embrace Change. Addison- Wesley
+	3. Kent Beck. Extreme Programming Explained: Embrace Change. Addison- Wesley
 
-Longman, Reading, MA, 2000
+	Longman, Reading, MA, 2000
 
-4. James Grenning. Test-Driven Development for Embedded C, The Pragmatic
+	4. James Grenning. Test-Driven Development for Embedded C, The Pragmatic
 
-Programmers
+	Programmers
 
-5. http://geepawhill.org/five- underplayed- Premises-of- tdd-2/ 
+	5. http://geepawhill.org/five- underplayed- Premises-of- tdd-2/
 
 
 
 1. make build / read me
 
 
-input: 
+input:
 
 text file
-first line is always the string of terms. 
-every line is a list of single characters, A-Z <-- case sensitivity 
+first line is always the string of terms.
+every line is a list of single characters, A-Z <-- case sensitivity
 
 
 output: the words and location of each letter
@@ -50,7 +50,7 @@ Words may be located horizontally, vertically, diagonally, and both forwards and
 Words will never "wrap" around the edges of the grid.
 
 
-User stories 
+User stories
 
 As the Puzzle Solver
 I want to search horizontally
@@ -108,7 +108,7 @@ assert (output, input)
 
 Organization of their code:
 .idea
-out -dir 
+out -dir
 src -dir
 test - dir
 
@@ -131,7 +131,7 @@ so enter a number - so 7 would be 7 down, 7 across
 
 		&&
 		create hash size of 7^2 and the hash has values (x location, y location)
-add a word - 
+add a word -
 
 word object
 puzzle object
@@ -143,28 +143,28 @@ classes?
 
 
 
-puzzle - 
+puzzle -
 	has the rules for the grid;
 	can also create the actual puzzle
 
 puzzle_solver
 	has functions to search
-	
+
 
 
 are they using the same hash?
 
 
+~~~~
 
 
 
+I imagine I can have a arrays or hashes for cooridinates?
+
+2d array - represent locations for cooridinates
+
+hash table
 
 
-
-
-
-
-
-
-
-
+x-axis,y-axis,letter,word
+0,0,R,(Boolean)

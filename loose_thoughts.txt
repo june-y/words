@@ -152,7 +152,7 @@ puzzle_solver
 
 
 
-are they using the same hash?
+
 
 
 ~~~~

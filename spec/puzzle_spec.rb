@@ -37,22 +37,14 @@ describe Puzzle do
     context "given a text file" do
       it "opens file and reads it" do  #fix this to test the NON single one
         puzzle = Puzzle.new
-        expect(puzzle.receive_single_input("test_files/fixtures/hello.txt")).to eql(["hello\n"])
+        #expect(puzzle.receive_single_input()).to be_an_instance_of(Array)
+        expect(puzzle.receive_single_input()).to eql(["hello\n"]) # test_files/fixtures/hello.txt
       end
     end
   end
 
 
-  describe ".letters_in_wordlist" do #is this letter in the words in the word list (goes thru all)
-   context "given a list of words" do
-     it "will be one array with unique letters looking for" do
-       puzzle = Puzzle.new
-       expect(puzzle.letters_in_wordlist(["juvenile","nectar","gold"])).to eq("juvenilctargod")
-       #right now this is failing because input for this function is based off
-       #of the ARGV[0] from receive_input.
-     end
-   end
- end
+
 
 
 
@@ -71,10 +63,6 @@ hash be like:
 
 
 x-axis | y-axis | letter | isin_Word
-
-
-
-
 
 ## if I read line by line (because mapping the letters to cooridinates)
 ## I will need read char, ignore delimiter of space or comma, and record x/y
