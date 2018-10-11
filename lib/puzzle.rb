@@ -17,6 +17,11 @@ require 'csv'
       file_array = IO.readlines(input_file)
       @@word_list = file_array[0].downcase.strip.split(/,/)
       @@letter_list = @@word_list.join("").chars.uniq
+      puzzle_row_count  = file_array.count
+      grid_size = (puzzle_row_count - 1)
+      @@square_with_letters = file_array[1..grid_size]
+      @@square_with_letters = @@square_with_letters
+      puts @@square_with_letters
       return @@word_list
     end
 
@@ -36,10 +41,18 @@ require 'csv'
     end #end of isin_Word()
 
 
+
+   def isWord_bigger_than_puzzle()
+     puts @@word_list.max_by(&:length)
+     puts @@square_with_letters.reject { |c| c.empty? }
+   end #isWord_bigger_than_puzzle
+
+
 end #puzzle class
 
-#test2 = Puzzle.new
-#test2.receive_input
+test2 = Puzzle.new
+test2.receive_input
+test2.isWord_bigger_than_puzzle()
 #test2.letters_in_wordlist
 #test2.isin_Words('a')
 

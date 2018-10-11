@@ -69,6 +69,14 @@ describe Puzzle do
      end
    end
 
+   describe ".isWord_bigger_than_puzzle" do
+     context "given a square_with_letters and a word list" do
+       it "return true if length and width are equal" do
+         square_with_letters.size = []
+         expect(variable).to be_in([true, false])
+       end
+     end
+   end
 
 
 
