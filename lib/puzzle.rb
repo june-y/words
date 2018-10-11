@@ -11,7 +11,7 @@ require 'csv'
     end
 
 
-    def receive_input(input_file)
+    def receive_input()
       prompt = '> '
       puts "Enter text will full path please"
       input_file = $stdin.gets.chomp
