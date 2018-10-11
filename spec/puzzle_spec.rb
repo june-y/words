@@ -10,6 +10,8 @@ reject puzzle if its not a square -
             can be read horizontally, vertically, diagonally, and both forwards and backwards
             Words will be a minimum of two letters long
 
+        ** I'm a little uncertain on the aspect
+
 
 INPUT:
  first line of the text file will consist of the list of words to be found
@@ -43,8 +45,6 @@ describe Puzzle do
      end
    end
 
-
-
   describe ".letters_in_wordlist" do #is this letter in the words in the word list (goes thru all)
    context "given a list of words" do
      it "will be one array with unique letters looking for" do
@@ -57,6 +57,17 @@ describe Puzzle do
    end
  end
 
+  describe ".isin_Words" do #is this letter in the words in the word list (goes thru all)
+     context "given an input letter" do
+       it "return true if the input letter is in the letter_list" do
+         puzzle = Puzzle.new
+         puzzle.receive_input() #test_files/test2.txt
+
+         expect(puzzle.isin_Words('e')) == (TRUE)
+         expect(puzzle.isin_Words('y')) == (FALSE)
+       end
+     end
+   end
 
 
 
@@ -67,29 +78,13 @@ describe Puzzle do
 end # Puzzle class
 
 
-
-
 =begin
 
 
 hash be like:
 
 
-
 x-axis | y-axis | letter | isin_Word
-
-## if I read line by line (because mapping the letters to cooridinates)
-## I will need read char, ignore delimiter of space or comma, and record x/y
-## and push values to hash
-
-
-
- puzzle = Puzzle.new
- puzzle.receive_input("test_files/test2.txt")
- expect(Puzzle.class_variable_get(@@word_list)).to eql(["juvenile,nectar,gold"])
- #expect(Puzzle.class_variable_get(@@square_with_letters)).to eql("")
-
-
 
 
 =end

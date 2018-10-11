@@ -10,7 +10,6 @@ require 'csv'
       file_array = IO.readlines(input_file)
     end
 
-
     def receive_input()
       prompt = '> '
       puts "Enter text will full path please"
@@ -40,18 +39,17 @@ require 'csv'
 end #puzzle class
 
 #test2 = Puzzle.new
-#test2.receive_single_input
+#test2.receive_input
 #test2.letters_in_wordlist
 #test2.isin_Words('a')
 
 =begin
 These are notes
 
-#you should account for commas and spaces
 #will need a function for grid_size, location hash
 ## min size for puzzle the longest word has to be able to fit on one line
-## min size for puzzle is longest word <= column count
-## I think the puzzle class should have some reflection of header and swl
+## min size for puzzle is longest word <= column/row count
+
 
 
 =end
