@@ -35,6 +35,7 @@ TESTING:
 
 describe Puzzle do
 
+
   describe ".receive_single_input" do #reading a txt file with a single line
    context "given a text file" do
      it "opens file and reads it" do
@@ -71,15 +72,34 @@ describe ".isin_Words" do #is this letter in the words in the word list (goes th
 
 
 describe ".clean_Square" do #
-    context "given a square_with_letters" do
-      it "will remove tabs, commas, empty lines, returning an array" do
+  context "given a square_with_letters" do
+    it "will remove tabs, commas, empty lines, returning an array" do
+      puzzle = Puzzle.new
+      puzzle.receive_input() #test_files/test2.txt
+      expect(puzzle.cleanSquare).to include("RATCENTJ")
+    end
+  end
+end
+
+describe ".isSquare" do #checking if square_with_letters is actually a square
+  context "given a square_with_letters" do
+    it "will return true if length and width are equal" do
+      test2 = Puzzle.new
+      test2.receive_input #test_files/test2.txt
+      test2.isSquare() == (TRUE)
+    end
+  end
+end
+
+  describe ".isWord_bigger_than_puzzle" do
+    context "given a square_with_letters and a word list" do
+      it "check if the longest words is at least the length the square" do
         puzzle = Puzzle.new
-        puzzle.receive_input() #test_files/test2.txt
-        expect(puzzle.cleanSquare).to include("RATCENTJ")
+       puzzle.receive_input() #test_files/test4_abort.txt
+       expect {puzzle.isWord_bigger_than_puzzle()}.to raise_error(SystemExit)
       end
     end
   end
-
 
 
 

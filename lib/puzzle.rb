@@ -22,6 +22,7 @@ require 'csv'
       return @@word_list
     end
 
+
     def letters_in_wordlist()
       @@letter_list = @@word_list.join("").chars.uniq
     end
@@ -36,8 +37,6 @@ require 'csv'
         end
 
     end #end of isin_Word()
-
-
 
     def cleanSquare() #plan for this function to work
         puzzle_row_count  = @file_array.count
@@ -57,18 +56,30 @@ require 'csv'
       end
 
 
+    def isSquare()
+      if (@@square_with_letters.count == @@square_with_letters[0].length)
+        puts "TRUE"
+        ##set value for this key to 1/true,
+      else
+        puts "FALSE"
+      end
+
+    end
 
 
-   def isWord_bigger_than_puzzle()
-     puts @@word_list.max_by(&:length)
+    def isWord_bigger_than_puzzle()
+      if (@@word_list.max_by(&:length).length > @@square_with_letters[0].length)
+        abort("A puzzle word is larger than the puzzle itself. REJECTED")
+      end
+    end #isWord_bigger_than_puzzle
 
-   end #isWord_bigger_than_puzzle
 
 
 end #puzzle class
 
 #test2 = Puzzle.new
 #test2.receive_input
+#test2.isSquare()
 #test2.isWord_bigger_than_puzzle()
 #test2.letters_in_wordlist
 #test2.isin_Words('a')
