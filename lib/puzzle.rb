@@ -12,35 +12,63 @@ require 'csv'
 
     def receive_input()
       prompt = '> '
-      puts "Enter text will full path please"
+      puts "Enter text will path relative to current directory"
       input_file = $stdin.gets.chomp
+
+      #initializing words/letter
       @file_array = IO.readlines(input_file)
       @@word_list = @file_array[0].downcase.strip.split(/,/)
       @@letter_list = @@word_list.join("").chars.uniq
+
+
+      #checks for square
       cleanSquare()
-      grid_size = @@square_with_letters.count
+      isSquare()
+      map_text_to_hash()
       return @@word_list
     end
 
 
     def letters_in_wordlist()
       @@letter_list = @@word_list.join("").chars.uniq
+      puts @@letter_list
     end
 
     def isin_Words(letter_input)
-    #could optimize to consider if you just go through the alphabet...
-        if (@@letter_list.any? letter_input )  #d in dog, cat or frog
-      		puts "TRUE"
-          ##set value for this key to 1/true,
+        if (@@letter_list.any? letter_input )
+      		return "TRUE"
       	else
-          puts "FALSE"
+          return "FALSE"
         end
-
     end #end of isin_Word()
 
-    def cleanSquare() #plan for this function to work
-        puzzle_row_count  = @file_array.count
 
+    def map_text_to_hash
+      @@mapped_puzzle = []
+      #mapped_letter = {}
+      x_value = 0
+      y_value = 0
+      headers = ["x-axis","y_axis", "point", "letter", "isin_Word"]
+      @@square_with_letters.each do |line|
+        line.split(//)
+        line.each_char do |letter|
+          @mapped_letter = {
+          :x_axis => x_value,
+          :y_axis => y_value,
+          :point =>  "(#{x_value},#{y_value})",
+          :letter => letter.downcase,
+          :isin_Word => (isin_Words(letter.downcase))
+        }
+          x_value += 1
+          puts @mapped_letter
+        end
+        y_value += 1
+      end
+      @@mapped_puzzle.push(@mapped_letter)
+      return @@mapped_puzzle
+    end #map to text
+
+    def cleanSquare() #plan for this function to work
         replace_With = [["\t",""],[",",""],["\s+",""],["\n",""]]
         @@square_with_letters = []
         @file_array.drop(1).each do |line|
