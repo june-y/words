@@ -23,15 +23,17 @@ require 'csv'
 
       #checks for square
       cleanSquare()
+      puts "cleaned"
       isSquare()
       map_text_to_hash()
+      letters_in_wordlist()
       return @@word_list
     end
 
 
     def letters_in_wordlist()
       @@letter_list = @@word_list.join("").chars.uniq
-      puts @@letter_list
+      return @@letter_list
     end
 
     def isin_Words(letter_input)
@@ -45,26 +47,30 @@ require 'csv'
 
     def map_text_to_hash
       @@mapped_puzzle = []
+      size_limit = @@square_with_letters[0].length
       #mapped_letter = {}
       x_value = 0
-      y_value = 0
+
       headers = ["x-axis","y_axis", "point", "letter", "isin_Word"]
       @@square_with_letters.each do |line|
         line.split(//)
+        y_value = 0
         line.each_char do |letter|
           @mapped_letter = {
           :x_axis => x_value,
           :y_axis => y_value,
-          :point =>  "(#{x_value},#{y_value})",
+          :point =>  [x_value,y_value],
           :letter => letter.downcase,
           :isin_Word => (isin_Words(letter.downcase))
-        }
-          x_value += 1
-          puts @mapped_letter
-        end
-        y_value += 1
+          }
+            y_value += 1
+            @@mapped_puzzle << @mapped_letter
+        end #letter loop
+        x_value += 1
+
       end
-      @@mapped_puzzle.push(@mapped_letter)
+# 7 (i want the limits for both to be added until 7, but
+# )
       return @@mapped_puzzle
     end #map to text
 
@@ -86,10 +92,10 @@ require 'csv'
 
     def isSquare()
       if (@@square_with_letters.count == @@square_with_letters[0].length)
-        puts "TRUE"
+        return "TRUE"
         ##set value for this key to 1/true,
       else
-        puts "FALSE"
+        return "FALSE"
       end
 
     end
@@ -104,6 +110,7 @@ require 'csv'
 
 
 end #puzzle class
+
 
 #test2 = Puzzle.new
 #test2.receive_input
