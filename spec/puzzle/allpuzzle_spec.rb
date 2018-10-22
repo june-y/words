@@ -80,9 +80,9 @@ end
 describe ".isSquare" do #checking if square_with_letters is actually a square
   context "given a square_with_letters" do
     it "will return true if length and width are equal" do
-      test2 = Puzzle.new
-      test2.receive_input #test_files/test2.txt
-      test2.isSquare() == (TRUE)
+      puzzle = Puzzle.new
+      puzzle.receive_input #test_files/test2.txt
+      puzzle.isSquare() == (TRUE)
     end
   end
 end

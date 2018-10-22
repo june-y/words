@@ -1,4 +1,30 @@
 
+~Current 08/17/18
+	Spent some time thinking about lurd points. I kind of conceptualised it as a cross around the letter itself. Then I realized, I could do a whole square for every letter surrounding the current letter. THEN I REALIZED - I could have the array point to the diagonal points instead of a whole square. But... now thinking about I would probably still want the 'square' design, because I realized that the diagonals would be be any ascending/descending coud mean any direction
+
+
+
+Things to finish: Fix your puzzle solver tests
+Get lurd to have all points
+Write searching functions - 
+			Note: In the morning I was thinking of doing this to be on a current letter, and then using a search function would check (left/right) for horizontal, and return TRUE or FALSE depending. But the output is just supposed to be correct values. Also I keep thinking that the user doesn't actually do anything for the program. You give a puzzle and get the result, it's not acutally interactive. 
+
+
+Well I didn't plan on manipulating @@mapped_puzzle. I originally wanted to manipulate points_list because it was the relevant stuff, but I ran through my variables that were already variations of @@mapped_puzzle and a lot weren't returning quite what I expected. So I just went with mapped_puzzle. 
+
+Can move onto the actual search functions. Will want to look into the poorly expecting variables. 
+
+
+
+
+
+LURD - l, u, r, d, lu, ru, ld, rd
+		,[(x_axis-1),((y_axis-1)],[(x_axis-1),(y_axis+1)],[(x_axis+1),(y_axis+1)],[(x_axis+1),(y_axis-1)]
+
+
+
+~ Starting Project
+
         Ease of building the project and running tests
         Project organization and ease of understanding
         Naming conventions and clarity
@@ -44,10 +70,10 @@ output: the words and location of each letter
 
 Rules:
 Grid is always square, so rows has to equal columns
-
 Words may be located horizontally, vertically, diagonally, and both forwards and backwards.
-
 Words will never "wrap" around the edges of the grid.
+
+
 
 
 User stories
@@ -94,8 +120,6 @@ Quick google for ruby and testing:
 
 
 
-
-
 assert (output, input)
 
 	write test
@@ -119,13 +143,9 @@ iml
 
 Not quite the solution: but thinking how I could build the puzzle
 
-
 make row: random characters for x width, separate by comma
-
 make column: random characters for y length
-
 amount - squared
-
 so enter a number - so 7 would be 7 down, 7 across
 		 createRow() z many times
 
@@ -153,12 +173,6 @@ puzzle_solver
 
 
 
-
-
-~~~~
-
-
-
 I imagine I can have a arrays or hashes for cooridinates?
 
 2d array - represent locations for cooridinates
@@ -168,3 +182,16 @@ hash table
 
 x-axis,y-axis,letter,word
 0,0,R,(Boolean)
+
+
+
+
+
+
+
+
+
+
+
+
+

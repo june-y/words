@@ -1,5 +1,5 @@
 require "spec_helper"
-require "puzzle"
+require "puzzle_solver"
 
 
 # search_horizontally = add to x one at a time, while running function for nearby words
@@ -13,7 +13,12 @@ class Puzzle_Solver
   describe Puzzle_Solver do
 
 
-
+      describe ".isLURD_nextletter" do
+        context "given a mapped puzzle and nextletter_inwords" do
+          it "checks if any LURD values for current letter are points that belong to next_letter" do
+        end
+      end
+    end
 
   end # Puzzle_Solver describe do block
 end #Puzzle_Solver class
