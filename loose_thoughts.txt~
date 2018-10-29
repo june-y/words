@@ -1,5 +1,29 @@
+10.25 
 
-~Current 08/17/18
+Current Issues:
+
+
+Areas to Refactor: 
+	place where you stripped for letter can be changed with lurd_for_point[0][:letter] or some variant.
+
+
+
+
+
+
+10.23
+ Been working through and I've fixed search horizantally so that it is testing the correct things now. I could probably scrounge up the other functions, but I've been starting to think about how I want to get to the atual solutions.
+
+right now the 'search' funcitons are testing whether the letter is nearby, but I need to be able to collect the points and be certain. Maybe verifying the letters are a substring of the word itself, so keep adding letters until its no longer the correct word. 
+
+Also I know I can refactor search horizantally but whoof ! it is fat
+
+
+Ok before leaving. Right now letters_forword is returning points not next to each other
+				and empty letters equal empty spaces so account for that
+
+
+~Current 10/17/18
 	Spent some time thinking about lurd points. I kind of conceptualised it as a cross around the letter itself. Then I realized, I could do a whole square for every letter surrounding the current letter. THEN I REALIZED - I could have the array point to the diagonal points instead of a whole square. But... now thinking about I would probably still want the 'square' design, because I realized that the diagonals would be be any ascending/descending coud mean any direction
 
 
@@ -18,7 +42,7 @@ Can move onto the actual search functions. Will want to look into the poorly exp
 
 
 
-LURD - l, u, r, d lu, ru, ld, rd
+LURD - l, u, r, d, lu, ru, ld, rd
 		,[(x_axis-1),((y_axis-1)],[(x_axis-1),(y_axis+1)],[(x_axis+1),(y_axis+1)],[(x_axis+1),(y_axis-1)]
 
 
