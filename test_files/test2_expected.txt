@@ -1,7 +1,7 @@
 juvenile:
 nectar:
 gold: (7,3) (6,2) (5,1) (4,0)
- 
+
 
 
 
@@ -15,8 +15,3 @@ D[4,0]	Y	P	N	L	J	S	D
 L	L	I	B	D	S[]	O	G
 W	L	O	T	Y	X	Y	S
 E[7,0]	N	C	G	V	A	I	V[7,7]
-
-
-
-
-

@@ -1,0 +1,18 @@
+seal,fog
+L	G	N	S	Q
+U	I	E	K	E
+Z	A	O	N	M
+L	F	O	G	J
+S	I	O	A	L
+
+
+
+[["s", [0, 3]], ["e", [1, 4]], ["e", [1, 2]], ["a", [2, 1]], ["l", [3, 0]], ["l", [4, 4]]]
+
+
+[0,3], [1, 2] "a", [2, 1] l [4, 4]
+
+
+distance = square_root[(x2 -x1) + (y2-y1)]
+
+

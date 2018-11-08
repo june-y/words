@@ -1,8 +1,56 @@
+11.03
+How to determine if the points are next to each other
+
+the points should be connected
+and you have a squared value for the size (square_limit) is returns the value of x where x = x^2
+I know that any word is not going to exceed the x
+
+
+[["s", [0, 3]], ["e", [1, 4]], ["e", [1, 2]], ["a", [2, 1]], ["l", [3, 0]], ["l", [4, 4]]]
+
+
+[0,3], [1, 2]  [2, 1] l [3,0]
+
+
+distance = square_root[(x2 -x1)^2 + (y2-y1)^2]
+
+(3-2)^2 + (0-1)^2 =
+1^2 + -1^2 =
+4 + 9 = 13
+sqrt(13)
+
+
+(2-1)^2 + (1-2)^2 =
+1 + 1 =2
+sqrt(2)
+(1) + (-1) =
+sqrt(2)
+
+distance is the same, I will double check with other words
+I actually used the wrong point at first, and was baffled. but I guess it
+proved the point that the distance should be the same
+
+check every
+
+
+fog
+
+
+
+
+
+10.29
+	A clue for areas for refactoring : Look at the indentation levels; however a lot of this is entering (each) clauses, so I want to finish search_horizantally before messing with. Also search_horizontally is really search_all because I'm just trying to get the whole word right now.
+
+	for word
+			go through each letter
+				current letter J, check surrounding areas if it is the next letter
+
+
+
 10.28
 
-I went to columbus code camp over the weekend and I went to the sessions on TDD.
-I accidentally wrote the same code twice, and I knew I needed to redirect my focuses
-on testing. The code camp sessions focused on readability and knowing when to refactor.
+I went to columbus code camp over the weekend and I went to the sessions on TDD. I accidentally wrote the same code twice, and I knew I needed to redirect my focuses on testing. The code camp sessions focused on readability and knowing when to refactor.
 
 
 10.25
@@ -22,9 +70,9 @@ Areas to Refactor:
 
 
 10.23
- Been working through and I've fixed search horizontally so that it is testing the correct things now. I could probably scrounge up the other functions, but I've been starting to think about how I want to get to the atual solutions.
+ Been working through and I've fixed search horizontally so that it is testing the correct things now. I could probably scrounge up the other functions, but I've been starting to think about how I want to get to the actual solutions.
 
-right now the 'search' funcitons are testing whether the letter is nearby, but I need to be able to collect the points and be certain. Maybe verifying the letters are a substring of the word itself, so keep adding letters until its no longer the correct word.
+right now the 'search' functions are testing whether the letter is nearby, but I need to be able to collect the points and be certain. Maybe verifying the letters are a substring of the word itself, so keep adding letters until its no longer the correct word.
 
 Also I know I can refactor search horizontally but whoof ! it is fat
 
@@ -34,14 +82,14 @@ Ok before leaving. Right now letters_forword is returning points not next to eac
 
 
 ~Current 10/17/18
-	Spent some time thinking about lurd points. I kind of conceptualised it as a cross around the letter itself. Then I realized, I could do a whole square for every letter surrounding the current letter. THEN I REALIZED - I could have the array point to the diagonal points instead of a whole square. But... now thinking about I would probably still want the 'square' design, because I realized that the diagonals would be be any ascending/descending coud mean any direction
+	Spent some time thinking about lurd points. I kind of conceptualized it as a cross around the letter itself. Then I realized, I could do a whole square for every letter surrounding the current letter. THEN I REALIZED - I could have the array point to the diagonal points instead of a whole square. But... now thinking about I would probably still want the 'square' design, because I realized that the diagonals would be be any ascending/descending could mean any direction
 
 
 
 Things to finish: Fix your puzzle solver tests
 Get lurd to have all points
 Write searching functions -
-			Note: In the morning I was thinking of doing this to be on a current letter, and then using a search function would check (left/right) for horizontal, and return TRUE or FALSE depending. But the output is just supposed to be correct values. Also I keep thinking that the user doesn't actually do anything for the program. You give a puzzle and get the result, it's not acutally interactive.
+			Note: In the morning I was thinking of doing this to be on a current letter, and then using a search function would check (left/right) for horizontal, and return TRUE or FALSE depending. But the output is just supposed to be correct values. Also I keep thinking that the user doesn't actually do anything for the program. You give a puzzle and get the result, it's not actually interactive.
 
 
 Well I didn't plan on manipulating @@mapped_puzzle. I originally wanted to manipulate points_list because it was the relevant stuff, but I ran through my variables that were already variations of @@mapped_puzzle and a lot weren't returning quite what I expected. So I just went with mapped_puzzle.
