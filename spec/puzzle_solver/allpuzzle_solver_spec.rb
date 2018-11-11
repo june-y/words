@@ -92,6 +92,26 @@ end
     end
   end
 
+  describe ".clean_nearbypointslist(point)" do
+    context "given words and a list with point locations " do
+      it "outputs string with word and points" do
+      end
+    end
+  end
+
+  describe ".compare_distances(points_per_lindex)" do
+    context "given words and a list with point locations " do
+      it "outputs string with word and points" do
+      end
+    end
+  end
+
+  describe ".adddistance_to_expected_letterlist_forword(word_list)" do
+    context "given words and a list with point locations " do
+      it "outputs string with word and points" do
+      end
+    end
+  end
 
 
 
