@@ -117,6 +117,7 @@ attr_reader :nearby_letters
 
 
   def add_lurd_to_mapped_letters()
+        nearby_letters()
         index = @lurd.group_by{|entry| [entry[:letter], entry[:point]]}
         @@puzzle_w_lurd = @@mapped_puzzle.map{|entry| (index[[entry[:letter], entry[:point]]] || []).reduce(entry, :merge)}
         # @@puzzle_w_lurd
@@ -184,14 +185,6 @@ attr_reader :nearby_letters
   end
 
 
-
-  def print_output
-    windex = 0
-    @@word_list.each_with_index do |word,windex|
-      p "#{word}: "
-    end # word list do
-  end
-
   def clean_nearbypointslist(point)
     nearbypoints = nearbypoints_list(point)
     cleaned_nearbypoints = nearbypoints.delete_if {|obj| (obj[0].is_a? String) || (obj[1].is_a? String)  || (obj.nil? == true)  || (obj[0] < 0 ) || (obj[1] < 0 )  }
@@ -207,7 +200,6 @@ attr_reader :nearby_letters
     y_value2 = point2[1]
     x_result = (x_value2 - x_value1)
     x_square = x_result**(2)
-
     y_result = (y_value2 - y_value1)
     y_square = y_result**(2)
     @distance = Math.sqrt((x_square + y_square))
@@ -298,12 +290,10 @@ attr_reader :nearby_letters
   end #compare_distances
 
 
-
-
-
-
-
-  def adddistance_to_expected_letterlist_forword(word_list)
+  def create_expected_letterlist_forword()
+    add_lurd_to_mapped_letters()
+    nextletter_inwords()
+    word_list = @@word_list
     word_list.each_with_index do |word,windex|
         @limit = word.length
         @pointsarray_forword = []
@@ -359,17 +349,17 @@ attr_reader :nearby_letters
           end #point per letter found
           lindex += 1
       end #do lindex
-      #p @expected_letterlist_forword
+       #p @expected_letterlist_forword
       windex += 1
     end
-
-  end #end of adddistance_to_expected_letterlist_forword
+    return @expected_letterlist_forword
+  end #end of create_expected_letterlist_forword
 
 # your lindex is wrong
 
   def search
     nextletter_inwords()
-    adddistance_to_expected_letterlist_forword(@@word_list)
+    create_expected_letterlist_forword()
     #p @expected_letterlist_forword
     @by_lindex =  @expected_letterlist_forword.group_by{|key| key[:lindex]}
     points_by_lindex = @by_lindex.select{|key| key==@lindex}
@@ -380,16 +370,22 @@ attr_reader :nearby_letters
     #sorted_potential_array = unique_points_array.sort_by{|k|k[0]}
   end #search
 
+  def print_output
+    windex = 0
+    @@word_list.each_with_index do |word,windex|
+      p "#{word}: "
+    end # word list do
+  end
+
   #test_files/test2.txt
 
 end #Puzzle_Solver class
 
 test = Puzzle_Solver.new
 test.nearby_letters
-test.add_lurd_to_mapped_letters()
-#test.nearbypoints_list([5,6])
-test.search()
-#test.nextletter_inwords(2)
+test.create_expected_letterlist_forword()
+#test.search()
+
 
 =begin
 lindex_list = @by_lindex.keys

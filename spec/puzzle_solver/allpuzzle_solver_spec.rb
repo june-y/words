@@ -70,49 +70,64 @@ class Puzzle_Solver
       end
     end
 
-    describe ".search_horizontally" do
-      context "given a puzzle" do
-        it "can search for words search_horizontally" do
+
+    describe ".determine_distance" do
+      context "given a list coontaining points, check the distance between them" do
+        it "selects the ones that are consecutive (those with the same distance)" do
+          solver = Puzzle_Solver.new
+          point1 = [3,10]
+          point2 = [1,5]
+          answer = solver.determine_distance(point1,point2)
+          expect(answer).to eq(5.385164807134504)
+          #expect(answer).to be_a(Float)
+          end
+        end
+      end
+
+      describe ".clean_nearbypointslist(point)" do
+        context "given a point" do
+          it "outputs nearby points, removing if it contains a string, is empty, if point is out of range" do
+            solver = Puzzle_Solver.new
+            solver.nearby_letters() #test_files/test2.txt
+            point = [5,6]
+            nearby_point = [4, 7]
+            expect(solver.clean_nearbypointslist(point)).to include(nearby_point)
+          end
+        end
+      end
+
+      describe ".create_expected_letterlist_forword(word_list)" do
+        context "given words and output of compare_distances " do
+          it " creates expected letter list with points and distances" do
+            solver = Puzzle_Solver.new
+            solver.nearby_letters() #test_files/test2.txt
+            a_result = {:potential_letter=>"l", :potential_point=>[5, 1], :lindex=>2, :next_letter=>"d", :nearby_potential_point=>[4, 0], :potential_point_distance=>1.4142135623730951}
+            expect(solver.create_expected_letterlist_forword().any? (a_result))
+          end
+        end
+      end
+      
+
+  describe ".compare_distances(points_per_lindex)" do
+    context "given an hash with linde as key, and points as values" do
+      it "outputs string with word and points" do
       end
     end
   end
 
+  describe ".print_output" do
+    context "given the results from search " do
+      it "outputs results in desired format" do
+      end
+    end
+  end
 
-describe ".determine_distance" do
-  context "given a list coontaining points, check the distance between them" do
-    it "selects the ones that are consecutive (those with the same distance)" do
+  describe ".search" do
+    context "given a word list and a puzzle" do
+      it "will find the points for the words" do
     end
   end
 end
-
-  describe ".print_output" do
-    context "given words and a list with point locations " do
-      it "outputs string with word and points" do
-      end
-    end
-  end
-
-  describe ".clean_nearbypointslist(point)" do
-    context "given words and a list with point locations " do
-      it "outputs string with word and points" do
-      end
-    end
-  end
-
-  describe ".compare_distances(points_per_lindex)" do
-    context "given words and a list with point locations " do
-      it "outputs string with word and points" do
-      end
-    end
-  end
-
-  describe ".adddistance_to_expected_letterlist_forword(word_list)" do
-    context "given words and a list with point locations " do
-      it "outputs string with word and points" do
-      end
-    end
-  end
-
 
 
   end # Puzzle_Solver describe do block
