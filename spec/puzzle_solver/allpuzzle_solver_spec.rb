@@ -106,7 +106,18 @@ class Puzzle_Solver
           end
         end
       end
-      
+
+      describe ".arepoints_Consecutive(point1,point2)" do
+        context "given two points " do
+          it "returns true if the point is next to it (as per lurd)" do
+            solver = Puzzle_Solver.new
+            solver.nearby_letters() #test_files/test2.txt
+            expect(solver.arepoints_Consecutive([1,4],[2,1]) == false)
+            expect(solver.arepoints_Consecutive([1,2],[2,1]) == true)
+          end
+        end
+      end
+
 
   describe ".compare_distances(points_per_lindex)" do
     context "given an hash with linde as key, and points as values" do

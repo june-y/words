@@ -206,94 +206,13 @@ attr_reader :nearby_letters
     return @distance
   end
 
-  def compare_distances(points_per_lindex)
-    if ((@points_per_lindex.count == 1) && (@lindex == 0))
-        p "1"
-        @point1 = @points_per_lindex
-        p @point1
-        if (@nextpoints_per_lindex.count == 1)
-          @point2 = @nextpoints_per_lindex.flatten
-          #distance1 = determine_distance(@point1,@point2)
-          #@expected_letterlist_forword[0][:nearby_point] = @point2
-          #@expected_letterlist_forword[0][:distance_from_currentpoint_to_nextletterpoint] = distance1
-        else (@nextpoints_per_lindex.count > 1)
-          @nextpoints_per_lindex.each do |point|
-              @point2 = point
-              #distance1 = determine_distance(@point1,@point2)
-              #@expected_letterlist_forword[0][:nearby_point] = @point2
-              #@expected_letterlist_forword[0][:distance_from_currentpoint_to_nextletterpoint] = distance1
-            end #do point
-          #p @potential_hash
-        end #((@points_per_lindex.count == 1) && (@lindex == 0))
-
-
-    elsif ((@points_per_lindex.count > 1) && (@lindex == 0))
-      p "2"
-      @points_per_lindex.each do |point|
-          @point1 = point
-      end #do point
-      if (@nextpoints_per_lindex.count == 1)
-        @point2 = @nextpoints_per_lindex.flatten
-      else (@nextpoints_per_lindex.count > 1)
-        @nextpoints_per_lindex.each do |point|
-            @point2 = point
-          end #do point
-      end # ((@points_per_lindex.count > 1) && (@lindex == 0))
-
-
-    elsif ((@points_per_lindex.count == 1) && (@lindex != 0))
-      p "3"
-      @point1 = @points_per_lindex.flatten
-      if (@nextpoints_per_lindex.count == 0)
-        nil
-      elsif (@nextpoints_per_lindex.count == 1)
-          @point2 = @nextpoints_per_lindex.flatten
-          #p @point2
-          distance3 = determine_distance(@point1,@point2)
-          @expected_letterlist_forword[0][:nearby_point] = @point2
-          @expected_letterlist_forword[0][:distance_from_currentpoint_to_nextletterpoint] = distance3
-      else (@nextpoints_per_lindex.count > 1)
-          @nextpoints_per_lindex.each do |point|
-              @point2 = point
-              #p @point2
-              distance3 = determine_distance(@point1,@point2)
-              @expected_letterlist_forword[0][:nearby_point] = @point2
-              @expected_letterlist_forword[0][:distance_from_currentpoint_to_nextletterpoint] = distance3
-          end #do point
-      end #((@points_per_lindex.count == 1) && (@lindex != 0))
-
-
-    else ((@points_per_lindex.count > 1) && (@lindex != 0))
-      p "4"
-      @points_per_lindex.each do |point|
-          p "!!!!"
-          @point1 = point
-          if (@nextpoints_per_lindex.count == 1)
-            @point2 = @nextpoints_per_lindex.flatten
-            distance4 = determine_distance(@point1,@point2)
-            p "AAAAA"
-            p  @point1, @point2
-            #@expected_letterlist_forword[0][:nearby_point] = @point2
-            #@expected_letterlist_forword[0][:distance_from_currentpoint_to_nextletterpoint] = distance4
-          else (@nextpoints_per_lindex.count > 1)
-            @nextpoints_per_lindex.each do |point|
-                @point2 = point
-                p "BBBB"
-                p @point1, @point2
-                distance4 = determine_distance(@point1,@point2)
-                #@expected_letterlist_forword[0][:nearby_point] = @point2
-                #@expected_letterlist_forword[0][:distance_from_currentpoint_to_nextletterpoint] = distance4
-              end #do point
-          end # ((@points_per_lindex.count > 1) && (@lindex != 0))
-        end #do point
-    end # if loop
-  end #compare_distances
-
-
   def create_expected_letterlist_forword()
     add_lurd_to_mapped_letters()
     nextletter_inwords()
     word_list = @@word_list
+    @combined_expected_letterlists = []
+    @by_lindex = []
+    @by_distance = []
     word_list.each_with_index do |word,windex|
         @limit = word.length
         @pointsarray_forword = []
@@ -317,7 +236,8 @@ attr_reader :nearby_letters
             ##for first letter
             array_limit = @letter_limit_for_word-1
             if (@lindex == array_limit)
-              p "this is last letter"
+              @potential_hash = {:potential_letter=> @current_letter, :potential_point=>@point1, :lindex=>lindex}
+              @expected_letterlist_forword << @potential_hash
             elsif (@lindex == 0 )
               @first_letter = @current_letter
               clean_nearbypointslist(point)
@@ -343,26 +263,87 @@ attr_reader :nearby_letters
                   @expected_letterlist_forword << @potential_hash
                   end # do point2
                 end #do potential_point2 again
-              #@expected_letterlist_forword = @expected_letterlist_forword.uniq
-
+              @expected_letterlist_forword = @expected_letterlist_forword.uniq
             end #if
           end #point per letter found
           lindex += 1
       end #do lindex
-       #p @expected_letterlist_forword
+      @combined_expected_letterlists << [word,@expected_letterlist_forword]
+      index_list =  @expected_letterlist_forword.group_by{|key| key[:lindex]}
+      distance_list = @expected_letterlist_forword.group_by{|key| key[:potential_point_distance]}
+      @by_distance << distance_list
+      @by_lindex <<  index_list
       windex += 1
     end
-    return @expected_letterlist_forword
+    return @combined_expected_letterlists
   end #end of create_expected_letterlist_forword
 
-# your lindex is wrong
+  # @by_lindex[0].each do |key, value| p value; p "************************"; p value.group_by{value[0][:potential_point_distance]} end
+  #@by_lindex[0].each do |key, value| p value end
+  #@by_lindex[0].each do |key, value| p value; p "************************"; p value.group_by{value[0][:potential_point_distance]} end
+  #@by_distance[0].each do |key, value| p value; p value[0][:lindex] end
+  #p @by_lindex#.group_by{|k,v| v[:potential_point_distance]}
+
+
+  def compare_distances()
+    nextletter_inwords()
+    create_expected_letterlist_forword()
+    #the next index is the next word
+    lindex_per_word = []
+    @by_lindex.each do |hash| lindex_per_word << hash.keys;hash.each do |arr| arr[1].each do |point_arr| @inner_hash =  point_arr;  end end end
+    p "***************************"
+    #puts @by_distance.delete_if{|key,value| key==nil || key.values}
+    #(key == nil) || (value.count != @actual_letterlist_forword.count)}
+      @by_distance.each_with_index do |hash,hindex|
+        @letter_count = lindex_per_word[hindex].count
+        p "&&&&&&&&&&&&"
+        hash.each do |arr|
+           point_count = arr[1].count;
+           #p arr[1][0].each_cons(@letter_count-1)
+           if (point_count >= @letter_count)
+              arr[1].each do |inner_hash|
+                @inner_hash = inner_hash
+                p @inner_hash
+
+
+
+
+
+
+
+                #p lindex_per_word[hindex]
+                # for each (lindex_per_word[hindex]), pick a letter and then
+                # insert the next until you get your word? you can also make
+                # sure the distance between letter 1 is divisible by same distance
+                # I think im going to make a function to check for conservative points
+                #ive tried variations with handling data and the only way I, as a human know
+                #which points are right is because they are consecutive
+                #if the last nearby_potential_point is consecutive to the (next lindex) potential_point
+              end
+           end
+       end
+    end
+  end #compare_distances
+
+=begin
+  lindex_per_word.each_with_index do |lindex_list,llindex|
+    @windex_limit = lindex_list.count
+    @lindex_list = lindex_list
+  end
+=end
+
+  def arepoints_Consecutive(point1,point2)
+    point1_lurd = @lurd.select{|k,v| k[:point] == point1}
+    return point1_lurd[0].values.include?(point2)
+  end
 
   def search
     nextletter_inwords()
     create_expected_letterlist_forword()
-    #p @expected_letterlist_forword
-    @by_lindex =  @expected_letterlist_forword.group_by{|key| key[:lindex]}
+    p @combined_expected_letterlists
+
     points_by_lindex = @by_lindex.select{|key| key==@lindex}
+    p points_by_lindex
     next_points_by_lindex = @by_lindex.select{|key| key==(@lindex+1)}
     @points_per_lindex = points_by_lindex.values.flatten.map{|key| key[:potential_point]}
     @nextpoints_per_lindex = next_points_by_lindex.values.flatten.map{|key| key[:potential_point]}
@@ -383,7 +364,8 @@ end #Puzzle_Solver class
 
 test = Puzzle_Solver.new
 test.nearby_letters
-test.create_expected_letterlist_forword()
+#test.create_expected_letterlist_forword()
+#test.compare_distances()
 #test.search()
 
 
