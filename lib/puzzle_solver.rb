@@ -204,7 +204,7 @@ attr_reader :nearby_letters
     return @distance
   end
 
-  def create_expected_letterlist_forword()
+  def create_potential_letterlist_forword()
     add_lurd_to_mapped_letters()
     nextletter_inwords()
     word_list = @@word_list
@@ -225,13 +225,12 @@ attr_reader :nearby_letters
           @current_letter = @letter_list[0][:letter]
           @next_letter = @letter_list[0][:next_letter]
           @letter_limit_for_word = @actual_letterlist_forword.count
-          currentletter_points = create_pointslist(@current_letter) #gives all points per letter bc loop
+          currentletter_points = create_pointslist(@current_letter)
           point_per_letter_found = currentletter_points.map{|key| key[:point]}
           p point_per_letter_found
           point_per_letter_found.each do |point|
             very_cleaned_nearbypoints = clean_nearbypointslist(point)
             @point1 = point
-            ##for first letter
             array_limit = @letter_limit_for_word-1
             if (@lindex == array_limit)
               @potential_hash = {:potential_letter=> @current_letter, :potential_point=>@point1, :lindex=>lindex}
@@ -249,7 +248,7 @@ attr_reader :nearby_letters
                   @expected_letterlist_forword << @potential_hash
                   end # do point2
                 end #do potential_point2 again
-            else (@lindex != 0 ) # @letter_limit_for_word I will want to change this to be more meaningful
+            else (@lindex != 0 ) # @letter_limit_
               @current_letter = @current_letter
               very_cleaned_nearbypoints.each do |potential_point2|
                 letter_at_point2 = letters_atpoint(potential_point2)
@@ -274,16 +273,18 @@ attr_reader :nearby_letters
       windex += 1
     end
     return @combined_expected_letterlists
-  end #end of create_expected_letterlist_forword
+  end #end of create_potential_letterlist_forword
+
+
 
   def arepoints_Consecutive(point1,point2)
     point1_lurd = @lurd.select{|k,v| k[:point] == point1}
     return point1_lurd[0].values.include?(point2)
   end
 
-  def compare_distances()
+  def compare_distances_relative_to_lindex()
     nextletter_inwords()
-    create_expected_letterlist_forword()
+    create_potential_letterlist_forword()
     lindex_per_word = []
 
     @by_lindex.each do |hash| lindex_per_word << hash.keys end
@@ -352,7 +353,7 @@ attr_reader :nearby_letters
            end # ((point_count >= @letter_count)
         end #do arr
       end #do hash/hindex
-  end #compare_distances
+  end #compare_distances_relative_to_lindex
 
 
 
@@ -368,4 +369,4 @@ end #Puzzle_Solver class
 
 test = Puzzle_Solver.new
 test.nearby_letters
-test.compare_distances()
+test.compare_distances_relative_to_lindex()

@@ -1,34 +1,6 @@
 require "spec_helper"
 require "puzzle"
 
-=begin
-
-RULES:
-reject puzzle if its not a square -
-        pick a min size; min for words and puzzle size
-        word class?
-            can be read horizontally, vertically, diagonally, and both forwards and backwards
-            Words will be a minimum of two letters long
-
-
-INPUT:
- first line of the text file will consist of the list of words to be found
-    separated by commas
-
-  remaining lines are randomized characters
-  and the number of rows will match the number of characters in a line
-
-OUTPUT:
-      WORD: (X,Y),(X,Y),(X,Y) (as many locations as letters)
-
-
-TESTING:
-    unit testing
-    integration testing
-
-=end
-
-
 describe Puzzle do
 
 
@@ -48,8 +20,6 @@ describe ".letters_in_wordlist" do #is this letter in the words in the word list
      puzzle = Puzzle.new
      puzzle.receive_input() #test_files/test2.txt
      expect(puzzle.letters_in_wordlist()).to eq(["j", "u", "v", "e", "n", "i", "l", "c", "t", "a", "r", "g", "o", "d"])
-     #right now this is failing because input for this function is based off
-     #of the ARGV[0] from receive_input.
    end
  end
 end
@@ -98,30 +68,14 @@ end
   end
 
 
-  describe ".map_text_to_hash" do
-    context "given a square_with_letters" do
-      it "creates a hash" do
-       puzzle = Puzzle.new
-       puzzle.receive_input() #test_files/
-       expect(puzzle.map_text_to_hash).to include({:x_axis=>63, :y_axis=>7, :point=>"(63,7)", :letter=>"v", :isin_Word=>"TRUE"})
+    describe ".map_text_to_hash" do
+      context "given a square_with_letters" do
+        it "create a hash" do
+         puzzle = Puzzle.new
+         puzzle.receive_input() #test_files/test2.txt
+         expect(puzzle.map_text_to_hash).to include({:isin_Word=>true, :letter=>"o", :point=>[1, 0], :x_axis=>1, :y_axis=>0})
+        end
       end
     end
-  end
-
-
 
 end # Puzzle class
-
-
-=begin
-
-do you want a hash just for the words, so that you can more easily search for
-next letter?
-
-hash be like:
-
-
-x-axis | y-axis | letter | isin_Word
-
-
-=end
