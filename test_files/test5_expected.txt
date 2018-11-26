@@ -1,0 +1,8 @@
+seal: (0,3),(1,2),(2,1),(3,0)
+fog: (3,1),(3,2),(3,3)
+L	G	N	S	Q
+U	I	E	K	E
+Z	A	O	N	M
+L	F	O	G	J
+S	I	O	A	L
+

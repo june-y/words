@@ -42,9 +42,9 @@ class Puzzle_Solver
 
 
     describe ".nearby_letters" do
-      context "given a " do
+      context "given the puzzle class and input has been received" do
         it "returns an array of [left(y-1),up(x-1),right(y+1),down(x+1),[(x_axis-1),((y_axis-1)],[(x_axis-1),(y_axis+1)],[(x_axis+1),(y_axis+1)],[(x_axis+1),(y_axis-1)]]" do
-          solver = Puzzle_Solver.new
+          solver = Puzzle_Solver.new #test_files/test2.txt
           expect(solver.nearby_letters()).to include(:point=>[7, 3], :letter=>"g", :left=>[6, 3], :right=>[8, 3], :up=>[7, 4], :down=>[7, 2], :left_up=>[6, 4], :right_up=>[8, 4], :left_down=>[6, 2], :right_down=>[8, 2])
       end
     end
@@ -60,6 +60,18 @@ class Puzzle_Solver
         end
       end
     end
+
+    describe ".nearbypoints_list(point)" do
+      context "given a point, and add_lurd_to_mapped_letters() has been run" do
+        it "outputs surrounding points" do
+          solver = Puzzle_Solver.new
+          solver.nearby_letters()
+          expect(solver.nearbypoints_list([5,4])).to include ([6, 5])
+        end
+      end
+    end
+
+
 
     describe ".nextletter_inword" do
       context "given an index (int) " do
@@ -133,12 +145,6 @@ class Puzzle_Solver
     end
   end
 
-  describe ".search" do
-    context "given a word list and a puzzle" do
-      it "will find the points for the words" do
-    end
-  end
-end
 
 
   end # Puzzle_Solver describe do block
